@@ -21,7 +21,7 @@ class removeExpSubCommand extends BaseSubCommand
      */
     public function prepare(): void
     {
-        $this->setPermission("essentialsx.remove-xp");
+        $this->setPermission($this->getPermission());
         $this->registerArgument(0, new RawStringArgument("player", false));
         $this->registerArgument(1, new IntegerArgument("amount", false));
     }
@@ -56,5 +56,9 @@ class removeExpSubCommand extends BaseSubCommand
         $newXp = $player->getXpManager()->getCurrentTotalXp();
         $sender->sendMessage(C::GREEN . str_replace(["{amount}", "{player}", "{new_xp}"], [number_format($amount), $player->getName(), number_format($newXp)], $config->getNested("xp.remove_success", "&aRemoved {amount} XP from {player}. Their new XP is {new_xp}.")));
         $sender->getWorld()->addSound($sender->getPosition(), new FizzSound());
+    }
+
+    public function getPermission(): string {
+        return "essentialsx.remove-xp";
     }
 }

@@ -16,7 +16,7 @@ class addExpSubCommand extends BaseSubCommand {
 
     public function prepare(): void
     {
-        $this->setPermission("essentialsx.add-xp");
+        $this->setPermission($this->getPermission());
         $this->registerArgument(0, new RawStringArgument("player", false));
         $this->registerArgument(1, new IntegerArgument("amount", false));
     }
@@ -45,5 +45,9 @@ class addExpSubCommand extends BaseSubCommand {
         $player->getXpManager()->addXp($amount);
         $sender->getWorld()->addSound($sender->getPosition(), new XpCollectSound());
         $sender->sendMessage(C::GREEN . str_replace(["{amount}", "{player}", "{new_xp}"], [number_format($amount), $player->getName(), number_format($player->getXpManager()->getCurrentTotalXp())], $config->getNested("xp.add_success", "&aAdded {amount} XP to {player}. Their new XP is {new_xp}.")));
+    }
+
+    public function getPermission(): string {
+        return "essentialsx.add-xp";
     }
 }

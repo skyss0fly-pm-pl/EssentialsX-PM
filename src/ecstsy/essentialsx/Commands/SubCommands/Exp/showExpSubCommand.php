@@ -6,10 +6,10 @@ use CortexPE\Commando\args\RawStringArgument;
 use CortexPE\Commando\BaseSubCommand;
 use CortexPE\Commando\exception\ArgumentOrderException;
 use ecstsy\essentialsx\Loader;
+use ecstsy\essentialsx\Utils\Utils;
 use pocketmine\utils\TextFormat as C;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
-use wock\essentialx\Utils\Utils;
 
 class showExpSubCommand extends BaseSubCommand
 {

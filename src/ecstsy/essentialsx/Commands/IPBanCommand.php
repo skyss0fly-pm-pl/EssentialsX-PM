@@ -14,7 +14,7 @@ use pocketmine\utils\TextFormat;
 class IPBanCommand extends BaseCommand {
 
     public function prepare(): void {
-        $this->setPermission("essentialsx.ip-ban");
+        $this->setPermission($this->getPermission());
 
         $this->registerArgument(0, new RawStringArgument("name", false));
         $this->registerArgument(1, new RawStringArgument("reason", true));
@@ -40,5 +40,9 @@ class IPBanCommand extends BaseCommand {
                 }
             }
         }
+    }
+
+    public function getPermission(): string {
+        return "essentialsx.ip-ban";
     }
 }

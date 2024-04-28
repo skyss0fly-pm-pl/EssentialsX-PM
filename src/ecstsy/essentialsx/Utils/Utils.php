@@ -48,7 +48,7 @@ class Utils {
         if ($currentVersion === null || $currentVersion !== $messageVersion) {
             Loader::getInstance()->getLogger()->info("Updating version of $fileName");
             self::saveOldConfig($fileName);
-            Loader::getInstance()->saveDefaultConfig($fileName);
+            Loader::getInstance()->saveDefaultConfig();
         }
     }
 

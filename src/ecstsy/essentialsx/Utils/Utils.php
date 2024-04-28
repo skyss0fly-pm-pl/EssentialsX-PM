@@ -42,13 +42,22 @@ class Utils {
     }
 
     public static function checkConfigVersion(string $fileName): void {
-        $currentVersion = Loader::getInstance()->getConfig()->get("version");
+        $configVersion = Loader::getInstance()->getConfig()->get("version");
         $messageVersion = Utils::getConfiguration(Loader::getInstance(), $fileName)->get("version");
+        $kitsVersion = Utils::getConfiguration(Loader::getInstance(), "kits.yml")->get("version");
     
-        if ($currentVersion === null || $currentVersion !== $messageVersion) {
+        if ($configVersion === null || $configVersion !== "1.0.1") {
             Loader::getInstance()->getLogger()->info("Updating version of $fileName");
             self::saveOldConfig($fileName);
             Loader::getInstance()->saveDefaultConfig();
+        } elseif ($messageVersion === null || $messageVersion !== "1.0.0") {
+            Loader::getInstance()->getLogger()->info("Updating version of $fileName");
+            self::saveOldConfig($fileName);
+            Loader::getInstance()->saveResource($fileName);
+        } elseif ($kitsVersion === null || $kitsVersion !== "1.0.0") {
+            Loader::getInstance()->getLogger()->info("Updating version of $fileName");
+            self::saveOldConfig($fileName);
+            Loader::getInstance()->saveResource($fileName);
         }
     }
 

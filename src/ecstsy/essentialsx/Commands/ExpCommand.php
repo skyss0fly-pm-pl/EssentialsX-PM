@@ -3,7 +3,7 @@
 namespace ecstsy\essentialsx\Commands;
 
 use CortexPE\Commando\BaseCommand;
-use ecstsy\essentialsx\Commands\SubCommands\Exp\AddExpSubCommand;
+use ecstsy\essentialsx\Commands\SubCommands\Exp\addExpSubCommand;
 use ecstsy\essentialsx\Commands\SubCommands\Exp\removeExpSubCommand;
 use ecstsy\essentialsx\Commands\SubCommands\Exp\setExpSubCommand;
 use ecstsy\essentialsx\Commands\SubCommands\Exp\showExpSubCommand;

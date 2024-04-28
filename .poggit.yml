@@ -8,4 +8,7 @@ projects:
     libs:
      - src: "poggit/libasynql/libasynql"
        version: "^4.1.1"
+     - src: "CortexPE/Commando/Commando"
+       version: "^3.0.0"
+       branch: PM4
 ...

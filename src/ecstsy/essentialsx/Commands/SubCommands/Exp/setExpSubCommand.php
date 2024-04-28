@@ -20,7 +20,7 @@ class setExpSubCommand extends BaseSubCommand
      */
     public function prepare(): void
     {
-        $this->setPermission("essentialsx.set-xp");
+        $this->setPermission($this->getPermission());
         $this->registerArgument(0, new RawStringArgument("player", false));
         $this->registerArgument(1, new IntegerArgument("amount", false));
     }
@@ -47,5 +47,9 @@ class setExpSubCommand extends BaseSubCommand
 
         $player->getXpManager()->setCurrentTotalXp($amount);
         $sender->sendMessage(C::colorize(str_replace(["{player}", "{amount}"], [$player->getName(), number_format($amount)], $config->getNested("xp.set_success", "&aSet {player}'s XP to {amount}."))));
+    }
+
+    public function getPermission(): string {
+        return "essentialsx.set-xp";
     }
 }

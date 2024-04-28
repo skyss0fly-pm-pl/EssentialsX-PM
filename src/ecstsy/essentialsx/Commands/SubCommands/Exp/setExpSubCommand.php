@@ -12,7 +12,7 @@ use pocketmine\command\CommandSender;
 use pocketmine\utils\TextFormat as C;
 use pocketmine\player\Player;
 
-class SetExpSubCommand extends BaseSubCommand
+class setExpSubCommand extends BaseSubCommand
 {
 
     /**

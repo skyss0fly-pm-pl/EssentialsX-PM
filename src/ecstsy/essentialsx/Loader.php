@@ -8,7 +8,7 @@ use ecstsy\essentialsx\Commands\ExpCommand;
 use ecstsy\essentialsx\Commands\IPBanCommand;
 use ecstsy\essentialsx\Listeners\EventListener;
 use ecstsy\essentialsx\Player\PlayerManager;
-use ecstsy\essentialsx\utils\Queries;
+use ecstsy\essentialsx\Utils\Queries;
 use ecstsy\essentialsx\Utils\Utils;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;

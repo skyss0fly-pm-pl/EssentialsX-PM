@@ -12,7 +12,7 @@ use pocketmine\utils\TextFormat;
 class BanLookupCommand extends BaseCommand {
 
     public function prepare(): void {
-        $this->setPermission("essentialsx.ban-lookup");
+        $this->setPermission($this->getPermission());
 
         $this->registerArgument(0, new RawStringArgument("search", false));
     }
@@ -38,5 +38,9 @@ class BanLookupCommand extends BaseCommand {
                 }
             }
         }
+    }
+
+    public function getPermission(): string {
+        return "essentialsx.ban-lookup";
     }
 }

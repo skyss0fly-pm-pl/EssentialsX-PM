@@ -17,7 +17,7 @@ class ExpCommand extends BaseCommand {
 
     public function prepare(): void
     {
-        $this->setPermission("essentialsx.default");
+        $this->setPermission($this->getPermission());
 
         $this->registerSubCommand(new AddExpSubCommand(Loader::getInstance(), "add", "add exp to a player", ["give", "insert"]));
         $this->registerSubCommand(new removeExpSubCommand(Loader::getInstance(), "remove", "remove exp from a player", ["take", "deduct", "subtract"]));
@@ -36,5 +36,9 @@ class ExpCommand extends BaseCommand {
 
         $levelup = Utils::getExpToLevelUp($sender->getXpManager()->getCurrentTotalXp());
         $sender->sendMessage(C::colorize(str_replace(["{player}", "{exp}", "{level}", "{levelup}"], [$sender->getNameTag(), number_format($sender->getXpManager()->getCurrentTotalXp()), $sender->getXpManager()->getXpLevel(), number_format($levelup)], $config->getNested("xp.self_info", "{player} §r§6has §r§c{exp} EXP §r§6(level §r§c{level}§r§6) §r§6and needs {levelup} more exp to level up."))));
+    }
+
+    public function getPermission(): string {
+        return "essentialsx.default";
     }
 }

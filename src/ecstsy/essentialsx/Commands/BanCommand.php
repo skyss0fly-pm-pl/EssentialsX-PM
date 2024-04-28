@@ -13,7 +13,7 @@ use pocketmine\utils\TextFormat;
 class BanCommand extends BaseCommand {
 
     public function prepare(): void {
-        $this->setPermission("essentialsx.ban");
+        $this->setPermission($this->getPermission());
 
         $this->registerArgument(0, new RawStringArgument("name", false));
         $this->registerArgument(1, new RawStringArgument("reason", true));
@@ -46,5 +46,8 @@ class BanCommand extends BaseCommand {
             $sender->sendMessage(TextFormat::RED . "Player '" . $args["name"] . "' does not exist or is offline.");
         }
     } 
-    
+
+    public function getPermission(): string {
+        return "essentialsx.ban";
+    }
 }

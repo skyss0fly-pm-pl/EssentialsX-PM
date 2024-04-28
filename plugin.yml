@@ -1,0 +1,37 @@
+name: EssentialsX
+main: ecstsy\essentialsx\Loader
+api: 5.0.0
+version: 1.0.0
+author: ecstsy
+
+permissions:
+  essentialsx.default:
+    default: true
+    description: "Default permission for EssentialsX"
+  essentialsx.ban:
+    default: op
+    description: "Gives access to /ban command."
+  essentialsx.ip-ban:
+    default: op
+    description: "Gives access to /ipban command." 
+  essentialsx.ban.exempt:
+    default: op
+    description: "Exempt from ban command."
+  essentialsx.ban-lookup:
+    default: op
+    description: "Gives access to /ban-lookup command."   
+  essentialsx.add-xp:
+    default: op
+    description: "Gives access to /add-xp command."
+  essentialsx.remove-xp:
+    default: op
+    description: "Gives access to /remove-xp command."
+  essentialsx.set-xp:
+    default: op
+    description: "Gives access to /set-xp command." 
+  essentialsx.show-xp:
+    default: true
+    description: "Gives access to /show-xp command."
+  essentialsx.xp.see:
+    default: true
+    description: "Gives access to /xp command."    

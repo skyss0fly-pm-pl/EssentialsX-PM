@@ -40,7 +40,7 @@ Contributions to the EssentialsX Port for PocketMine-MP are welcome! If you have
 
 ## License
 
-This project is licensed under the [GNU General Public License v3.0](https://github.com/iLVOEWOCK/EssentialsX-PM/blob/main/LICENSE).
+This project is licensed under the [Apache License v2.0](https://github.com/iLVOEWOCK/EssentialsX-PM/blob/main/LICENSE).
 
 ## Credits
 
@@ -59,7 +59,7 @@ Contributions to the EssentialsX Port for PocketMine-MP are welcome! If you'd li
 
 Contributions can include bug fixes, feature enhancements, documentation improvements, or any other valuable contributions to the project.
 
-By contributing to this project, you agree to release your contributions under the project's [Apache License](https://github.com/iLVOEWOCK/EssentialsX-PM/blob/main/LICENSE).
+By contributing to this project, you agree to release your contributions under the project's [ApacheLicense v2.0](https://github.com/iLVOEWOCK/EssentialsX-PM/blob/main/LICENSE).
 
 ## To Do
 

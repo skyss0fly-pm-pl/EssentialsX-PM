@@ -1,0 +1,9 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/iLVOEWOCK/EssentialsX-PM
+build-by-default: true
+branches:
+- main
+projects:
+  EssentialsX-PM:
+    path: ""
+
+...

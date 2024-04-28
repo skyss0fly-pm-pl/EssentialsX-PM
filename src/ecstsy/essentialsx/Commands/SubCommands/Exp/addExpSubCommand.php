@@ -12,7 +12,7 @@ use pocketmine\player\Player;
 use pocketmine\utils\TextFormat as C;
 use pocketmine\world\sound\XpCollectSound;
 
-class AddExpSubCommand extends BaseSubCommand {
+class addExpSubCommand extends BaseSubCommand {
 
     public function prepare(): void
     {

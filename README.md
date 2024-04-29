@@ -34,6 +34,10 @@ The plugin provides a wide range of commands and features. Here are some example
 
 Please refer to the official EssentialsX documentation for a complete list of commands and their usage.
 
+## Modules
+This plugin comoes with a built in spawn module
+This plugin also comes with a built in basic economy
+
 ## Contributing
 
 Contributions to the EssentialsX Port for PocketMine-MP are welcome! If you have any bug reports, feature requests, or code improvements, feel free to open an issue or submit a pull request on the project's GitHub repository.

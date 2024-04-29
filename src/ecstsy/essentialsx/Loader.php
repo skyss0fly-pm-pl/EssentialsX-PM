@@ -31,7 +31,11 @@ class Loader extends PluginBase {
         $files = ["config.yml", "messages-eng.yml", "kits.yml"];
 
         foreach ($files as $file) {
-            Utils::checkConfigVersion($file);
+            $this->saveResource($file);
+        }
+
+        foreach ($this->getResources() as $resource) {
+            Utils::checkConfigVersion($resource);
         }
         
         $unregisteredCommands = ["ban", "ban-ip", "gamemode"];

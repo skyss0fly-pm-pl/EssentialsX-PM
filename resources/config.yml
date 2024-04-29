@@ -2,7 +2,30 @@
 # Made by Wockgod
 # Discord: `woccck`
 # (!) DO NOT CHANGE (!)
-version: 1.0.0
+version: 1.0.1
+
+# The character(s) to prefix all nicknames, so that you know they are not true usernames.
+# Users with essentialsx.nick.hideprefix will not be prefixed with the character(s)
+nickname-prefix: '~'
+
+# The maximum length allowed in nicknames. The nickname prefix is not included in this.
+max-nick-length: 15
+
+# A list of phrases that cannot be used in nicknames. You can include regular expressions here.
+# Users with essentialsx.nick.blacklist.bypass will be able to bypass this filter.
+nick-blacklist:
+#- Notch
+#- '^Dinnerbone'
+
+# When this option is enabled, nickname length checking will exclude color codes in player names.
+# ie: "&6Notch" has 7 characters (2 are part of a color code), a length of 5 is used when this option is set to true
+ignore-colors-in-max-nick-length: false
+
+# Cooldowns for commands in seconds
+command-cooldowns:
+  feed: 10 # 10 Seconds
+  home: 70 # 1 minute 10 seconds
+  heal: 60 # 1 minute
 
 # Vanilla Enchantments
 # Ores that fortune activates on

@@ -14,8 +14,6 @@ ip-ban:
 # Gamemode Messages
 # Tags: {player}, {target_player}, {gamemode}
 gamemode:
-  in_game_only: "&cYou must run this command in-game"
-  invalid_arguments: "&cInvalid arguments: /gamemode <mode> [player]"
   invalid_gamemode: "&cInvalid gamemode"
   player_not_found: "&cPlayer '{player}' does not exist or is offline."
   no_permission: "&cYou don't have permission to change to that game mode."
@@ -24,9 +22,7 @@ gamemode:
 # Exp Messages
 # Tags: {player} {exp} {level} {levelup} {amount} {new_xp}
 xp:
-  in_game_only: "&cThis command must be used in-game."
   self_info: "{player} §r§6has §r§c{exp} EXP §r§6(level §r§c{level}§r§6) §r§6and needs {levelup} more exp to level up."
-  no_permission: "&cYou do not have permission to use this command."
   add_usage: "&cUsage: /xp add <player> <amount>"
   player_not_found: "&cPlayer not found."
   invalid_amount: "&cAmount must be a positive integer."

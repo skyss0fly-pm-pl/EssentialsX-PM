@@ -1,7 +1,7 @@
 name: EssentialsX
 main: ecstsy\essentialsx\Loader
 api: 5.0.0
-version: 1.0.0
+version: 1.0.1
 author: ecstsy
 
 permissions:
@@ -34,4 +34,43 @@ permissions:
     description: "Gives access to /show-xp command."
   essentialsx.xp.see:
     default: true
-    description: "Gives access to /xp command."    
+    description: "Gives access to /xp command."   
+  essentialsx.commandcooldowns.bypass:
+    default: op
+    description: "Gives access to bypass command cooldowns."  
+  essentialsx.nick:
+    default: op
+    description: "Gives access to /nick command."
+  essentialsx.nick.hideprefix:
+    default: op
+    description: "Hides nick prefix."
+  essentialsx.nick.blacklist:
+    default: op
+    description: "Gives access to /nick blacklist names."
+  essentialsx.feed:
+    default: op
+    description: "Gives access to /feed command."  
+  essentialsx.heal:
+    default: op
+    description: "Gives access to /heal command."  
+  essentialsx.show-xp:
+    default: true
+    description: "Gives access to /show-xp command." 
+  essentialsx.give-kit:
+    default: op
+    description: "Gives access to /give-kit command."   
+  essentialsx.near:
+    default: op
+    description: "Gives access to /near command."
+  essentialsx.spawn-set:
+    default: op
+    description: "Gives access to /spawn-set command."    
+  essentialsx.itemdb:
+    default: op
+    description: "Gives access to /itemdb command."  
+  essentialsx.gamemode:
+    default: op
+    description: "Gives access to /gamemode command."  
+  essentialasx.fly:
+    default: op
+    description: "Gives access to /fly command."  

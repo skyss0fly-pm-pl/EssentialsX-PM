@@ -3,6 +3,12 @@
 namespace ecstsy\essentialsx\Utils;
 
 use ecstsy\essentialsx\Loader;
+use pocketmine\color\Color;
+use pocketmine\item\Armor;
+use pocketmine\item\enchantment\EnchantmentInstance;
+use pocketmine\item\enchantment\StringToEnchantmentParser;
+use pocketmine\item\StringToItemParser;
+use pocketmine\player\GameMode;
 use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
@@ -77,6 +83,90 @@ class Utils {
         return $text;
     }
 
+    public static function setupItems(array $inputData): array
+    {
+        $items = [];
+        $stringToItemParser = StringToItemParser::getInstance();
+    
+        foreach ($inputData as $data) {
+            $itemString = $data["item"];
+            $item = $stringToItemParser->parse($itemString);
+    
+            if ($item === null) {
+                continue;
+            }
+    
+            $amount = $data["amount"] ?? 1;
+            $item->setCount($amount);
+    
+            $name = $data["name"] ?? null;
+            if ($name !== null) {
+                $item->setCustomName(C::colorize($name));
+            }
+    
+            $lore = $data["lore"] ?? null;
+            if ($lore !== null) {
+                $lore = array_map(function ($line) {
+                    return C::colorize($line);
+                }, $lore);
+                $item->setLore($lore);
+            }
+    
+            $enchantments = $data["enchantments"] ?? null;
+            if ($enchantments !== null) {
+                foreach ($enchantments as $enchantmentData) {
+                    $enchantment = $enchantmentData["enchant"] ?? null;
+                    $level = $enchantmentData["level"] ?? 1;
+                    if ($enchantment !== null) {
+                        $item->addEnchantment(new EnchantmentInstance(StringToEnchantmentParser::getInstance()->parse($enchantment)), $level);
+                    }
+                }
+            }
+
+            $color = $data["color"] ?? null;
+            if ($item instanceof Armor && $color !== null) {
+                $rgb = explode(",", $color);
+                $item->setCustomColor(Color::fromRGB((int)$rgb[0]));
+            }
+    
+            $nbtData = $data["nbt"] ?? null;
+            if ($nbtData !== null) {
+                $tag = $nbtData["tag"] ?? "";
+                $value = $nbtData["value"] ?? "";
+                $item->getNamedTag()->setString($tag, $value);
+            }
+    
+            $items[] = $item;
+        }
+    
+        return $items;
+    }
+
+    public static function matchGameMode(mixed $modeString): ?GameMode {
+        $modeString = strtolower($modeString);
+
+        $gameModes = [
+            "gmc" => GameMode::CREATIVE(),
+            "c" => GameMode::CREATIVE(),
+            "creative" => GameMode::CREATIVE(),
+            "1" => GameMode::CREATIVE(),
+            "gms" => GameMode::SURVIVAL(),
+            "s" => GameMode::SURVIVAL(),
+            "0" => GameMode::SURVIVAL(),
+            "survival" => GameMode::SURVIVAL(),
+            "gma" => GameMode::ADVENTURE(),
+            "2" => GameMode::ADVENTURE(),
+            "a" => GameMode::ADVENTURE(),
+            "adventure" => GameMode::ADVENTURE(),
+            "gmsp" => GameMode::SPECTATOR(),
+            "4" => GameMode::SPECTATOR(),
+            "sp" => GameMode::SPECTATOR(),
+            "spectator" => GameMode::SPECTATOR(),
+        ];
+
+        return $gameModes[$modeString] ?? null;
+    }
+    
     public static function toggleFlight(Player $player, bool $forceOff = false): void
     {
 
@@ -99,7 +189,7 @@ class Utils {
         }
     }
 
-        /**
+    /**
      * Returns an online player whose name begins with or equals the given string (case insensitive).
      * The closest match will be returned, or null if there are no online matches.
      *

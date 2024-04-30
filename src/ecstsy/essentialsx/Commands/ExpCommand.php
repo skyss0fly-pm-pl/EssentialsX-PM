@@ -19,10 +19,10 @@ class ExpCommand extends BaseCommand {
     {
         $this->setPermission($this->getPermission());
 
-        $this->registerSubCommand(new AddExpSubCommand(Loader::getInstance(), "add", "add exp to a player", ["give", "insert"]));
-        $this->registerSubCommand(new removeExpSubCommand(Loader::getInstance(), "remove", "remove exp from a player", ["take", "deduct", "subtract"]));
-        $this->registerSubCommand(new setExpSubCommand(Loader::getInstance(), "set", "set the exp of a player"));
-        $this->registerSubCommand(new showExpSubCommand(Loader::getInstance(), "show", "show the exp of a player", ["get", "view"]));
+        $this->registerSubCommand(new AddExpSubCommand("add", "add exp to a player", ["give", "insert"]));
+        $this->registerSubCommand(new removeExpSubCommand("remove", "remove exp from a player", ["take", "deduct", "subtract"]));
+        $this->registerSubCommand(new setExpSubCommand("set", "set the exp of a player"));
+        $this->registerSubCommand(new showExpSubCommand("show", "show the exp of a player", ["get", "view"]));
     }
 
     public function onRun(CommandSender $sender, string $aliasUsed, array $args): void

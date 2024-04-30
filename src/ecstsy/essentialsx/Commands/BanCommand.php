@@ -26,8 +26,8 @@ class BanCommand extends BaseCommand {
     
         if ($user !== null) {
             if (!$user->hasPermission("essentialsx.ban.exempt")) {
-                if ($user->isOnline() && $sender->hasPermission("essentialsx.ban")) { // Check if the sender can ban online players
-                    $reason = implode(" ", array_slice($args, 1)); // Join all arguments after the player name into a single string
+                if ($user->isOnline() && $sender->hasPermission($this->getPermission())) { 
+                    $reason = implode(" ", array_slice($args, 1)); 
                     $format = $config->get("ban.format");
                     $message = $config->get("ban.message");
     
@@ -46,7 +46,7 @@ class BanCommand extends BaseCommand {
             $sender->sendMessage(TextFormat::RED . "Player '" . $args["name"] . "' does not exist or is offline.");
         }
     } 
-
+    
     public function getPermission(): string {
         return "essentialsx.ban";
     }

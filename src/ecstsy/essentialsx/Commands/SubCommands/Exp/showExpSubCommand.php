@@ -46,6 +46,6 @@ class showExpSubCommand extends BaseSubCommand
     }
 
     public function getPermission(): string {
-        return "essentialsx.show.xp";
+        return "essentialsx.show-xp";
     }
 }

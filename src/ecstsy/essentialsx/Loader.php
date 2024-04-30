@@ -5,7 +5,15 @@ namespace ecstsy\essentialsx;
 use ecstsy\essentialsx\Commands\BanCommand;
 use ecstsy\essentialsx\Commands\BanLookupCommand;
 use ecstsy\essentialsx\Commands\ExpCommand;
+use ecstsy\essentialsx\Commands\FeedCommand;
+use ecstsy\essentialsx\Commands\FlyCommand;
+use ecstsy\EssentialsX\Commands\GamemodeCommand;
+use ecstsy\essentialsx\Commands\HealCommand;
 use ecstsy\essentialsx\Commands\IPBanCommand;
+use ecstsy\essentialsx\Commands\ItemDBCommand;
+use ecstsy\essentialsx\Commands\KitCommand;
+use ecstsy\essentialsx\Commands\NearCommand;
+use ecstsy\essentialsx\Commands\SpawnCommand;
 use ecstsy\essentialsx\Listeners\EventListener;
 use ecstsy\essentialsx\Player\PlayerManager;
 use ecstsy\essentialsx\Utils\Queries;
@@ -49,6 +57,15 @@ class Loader extends PluginBase {
             new IPBanCommand($this, "ban-ip", "Add an IP to the banlist.", ["ipban"]),
             new BanLookupCommand($this, "banlookup", "Lookup a player in the banlist."),
             new ExpCommand($this, "exp", "View your experience", ["xp", "experience"]),
+            new ExpCommand($this, "exp", "View your experience", ["xp", "experience"]),
+            new HealCommand($this, "heal", "Restore your health"),
+            new FeedCommand($this, "feed", "Restore your hunger"),
+            new KitCommand($this, "kit", "View server kits", ["kits"]),
+            new NearCommand($this, "near", "View nearby players within a specific radius"),
+            new SpawnCommand($this, "spawn", "Teleports you the spawn of the world you're in"),
+            new ItemDBCommand($this, "itemdb", "View the information of the item in hand"),
+            new GamemodeCommand($this, "gamemode", "Change your gamemode", ["gm"]),
+            new FlyCommand($this, "fly", "Allows the player to fly"),
         ]);
 
         $listeners = [new EventListener()];

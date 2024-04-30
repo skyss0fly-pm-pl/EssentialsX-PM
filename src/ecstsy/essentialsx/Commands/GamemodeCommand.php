@@ -1,6 +1,6 @@
 <?php
 
-namespace ecstsy\EssentialsX\Commands;
+namespace ecstsy\essentialsx\Commands;
 
 use CortexPE\Commando\args\RawStringArgument;
 use CortexPE\Commando\BaseCommand;

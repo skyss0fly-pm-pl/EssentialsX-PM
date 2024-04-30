@@ -17,7 +17,7 @@ class SpawnCommand extends BaseCommand {
         $this->setPermission($this->getPermission());
 
         $this->registerArgument(0, new RawStringArgument("name", true));
-        $this->registerSubCommand(new SetSpawnSubCommand(Loader::getInstance(), "set", "Set the world spawn in the blockk you are on", ["setspawn"]));
+        $this->registerSubCommand(new SetSpawnSubCommand("set", "Set the world spawn in the blockk you are on", ["setspawn"]));
     }
 
     public function onRun(CommandSender $sender, string $aliasUsed, array $args): void

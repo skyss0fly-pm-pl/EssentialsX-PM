@@ -67,7 +67,7 @@ By contributing to this project, you agree to release your contributions under t
 
 ## To Do
 
-- [ ] kits
-- [ ] idk
+- [x] kits
+- [ ] import the rest of the commands
 - [ ] homes
 - [ ] warps

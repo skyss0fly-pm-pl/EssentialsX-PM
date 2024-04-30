@@ -7,7 +7,7 @@ use ecstsy\essentialsx\Commands\BanLookupCommand;
 use ecstsy\essentialsx\Commands\ExpCommand;
 use ecstsy\essentialsx\Commands\FeedCommand;
 use ecstsy\essentialsx\Commands\FlyCommand;
-use ecstsy\EssentialsX\Commands\GamemodeCommand;
+use ecstsy\essentialsx\Commands\GamemodeCommand;
 use ecstsy\essentialsx\Commands\HealCommand;
 use ecstsy\essentialsx\Commands\IPBanCommand;
 use ecstsy\essentialsx\Commands\ItemDBCommand;

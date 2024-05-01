@@ -1,8 +1,18 @@
 # EssentialsX Pocketmine-MP port configuration!
 # Made by Wockgod
-# Discord: `woccck`
+# Discord: `wockkinmycup`
 # (!) DO NOT CHANGE (!)
-version: 1.0.1
+version: 1.0.2
+
+# (!) NOTICE (!)
+# Some of these features require their own tags for plugins
+# that use these, such as RankSystem, in order for nicknames 
+# to properly appear i have created a tag that serves this purpose.
+# Below is a list of tags and what they do:
+#
+# Tags:
+# RankSystem:
+#  "{display_name}" - The display name of the player
 
 # The character(s) to prefix all nicknames, so that you know they are not true usernames.
 # Users with essentialsx.nick.hideprefix will not be prefixed with the character(s)
@@ -14,12 +24,21 @@ max-nick-length: 15
 # A list of phrases that cannot be used in nicknames. You can include regular expressions here.
 # Users with essentialsx.nick.blacklist.bypass will be able to bypass this filter.
 nick-blacklist:
-#- Notch
+ # Notch
 #- '^Dinnerbone'
 
 # When this option is enabled, nickname length checking will exclude color codes in player names.
 # ie: "&6Notch" has 7 characters (2 are part of a color code), a length of 5 is used when this option is set to true
 ignore-colors-in-max-nick-length: false
+
+# Set the default max amount of homes 
+max-homes: 3
+
+# Adding commands here will disable them 
+# This should prevent command conflicts
+disabled-commands:
+#  - nick
+#  - clear
 
 # Cooldowns for commands in seconds
 command-cooldowns:

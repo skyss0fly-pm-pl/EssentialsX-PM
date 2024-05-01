@@ -36,23 +36,23 @@ class WarpCommand extends BaseCommand {
             return;
         }
     
+        if ($player === null && isset($args["name"])) {
+            $sender->sendMessage(C::RED . "Player '{$args["name"]}' not found.");
+            return;
+        }
+        
         if ($player !== null) {
             if (!$sender->hasPermission("essentialsx.warp.others")) {
                 $sender->sendMessage(C::RED . "You do not have permission to warp others.");
                 return;
             }
-    
-            if ($player === null) {
-                $sender->sendMessage(C::RED . "Player '{$player}' not found.");
-                return;
-            }
-    
+        
             $warp->teleport($player);
             $sender->sendMessage(C::GREEN . "Player '{$player->getName()}' has been warped to '{$warpName}'.");
         } else {
             $warp->teleport($sender);
             $sender->sendMessage(C::GREEN . "You have been warped to '{$warpName}'.");
-        }
+        }  
     }
 
     public function getPermission(): string {

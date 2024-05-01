@@ -4,20 +4,34 @@ namespace ecstsy\essentialsx;
 
 use ecstsy\essentialsx\Commands\BanCommand;
 use ecstsy\essentialsx\Commands\BanLookupCommand;
+use ecstsy\essentialsx\Commands\CreateHomeCommand;
+use ecstsy\essentialsx\Commands\CreateWarpCommand;
 use ecstsy\essentialsx\Commands\ExpCommand;
 use ecstsy\essentialsx\Commands\FeedCommand;
 use ecstsy\essentialsx\Commands\FlyCommand;
 use ecstsy\essentialsx\Commands\GamemodeCommand;
 use ecstsy\essentialsx\Commands\HealCommand;
+use ecstsy\essentialsx\Commands\HomeCommand;
+use ecstsy\essentialsx\Commands\HomesCommand;
 use ecstsy\essentialsx\Commands\IPBanCommand;
 use ecstsy\essentialsx\Commands\ItemDBCommand;
 use ecstsy\essentialsx\Commands\KitCommand;
+use ecstsy\essentialsx\Commands\ListWarpsCommand;
 use ecstsy\essentialsx\Commands\NearCommand;
+use ecstsy\essentialsx\Commands\NickCommand;
+use ecstsy\essentialsx\Commands\RemoveHomeCommand;
+use ecstsy\essentialsx\Commands\RemoveWarpCommand;
 use ecstsy\essentialsx\Commands\SpawnCommand;
+use ecstsy\essentialsx\Commands\WarpCommand;
 use ecstsy\essentialsx\Listeners\EventListener;
+use ecstsy\essentialsx\Player\Homes\HomeManager;
 use ecstsy\essentialsx\Player\PlayerManager;
+use ecstsy\essentialsx\Server\Warps\WarpManager;
 use ecstsy\essentialsx\Utils\Queries;
 use ecstsy\essentialsx\Utils\Utils;
+use IvanCraft623\RankSystem\RankSystem;
+use IvanCraft623\RankSystem\session\Session;
+use IvanCraft623\RankSystem\tag\Tag;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
 use pocketmine\utils\SingletonTrait;
@@ -30,6 +44,10 @@ class Loader extends PluginBase {
     public static DataConnector $connector;
 
     public static PlayerManager $playerManager;
+
+    public static HomeManager $homeManager;
+
+    public static WarpManager $warpManager;
 
     public function onLoad(): void {
         self::setInstance($this);
@@ -52,11 +70,10 @@ class Loader extends PluginBase {
             $this->getServer()->getCommandMap()->unregister(Server::getInstance()->getCommandMap()->getCommand($command));
         }
 
-        $this->getServer()->getCommandMap()->registerAll("EssentialsX", [
+        $commands = [
             new BanCommand($this, "ban", "Add a player to the banlist."),
             new IPBanCommand($this, "ban-ip", "Add an IP to the banlist.", ["ipban"]),
             new BanLookupCommand($this, "banlookup", "Lookup a player in the banlist."),
-            new ExpCommand($this, "exp", "View your experience", ["xp", "experience"]),
             new ExpCommand($this, "exp", "View your experience", ["xp", "experience"]),
             new HealCommand($this, "heal", "Restore your health"),
             new FeedCommand($this, "feed", "Restore your hunger"),
@@ -66,7 +83,22 @@ class Loader extends PluginBase {
             new ItemDBCommand($this, "itemdb", "View the information of the item in hand"),
             new GamemodeCommand($this, "gamemode", "Change your gamemode", ["gm"]),
             new FlyCommand($this, "fly", "Allows the player to fly"),
-        ]);
+            new HomesCommand($this, "homes", "View your homes"),
+            new HomeCommand($this, "home", "Teleport to your saved homes"),
+            new CreateHomeCommand($this, "createhome", "Create a new home", ["sethome"]),
+            new RemoveHomeCommand($this, "removehome", "Remove a home", ["delhome"]),
+            new CreateWarpCommand($this, "createwarp", "Create a new warp", ["setwarp"]),
+            new RemoveWarpCommand($this, "removewarp", "Remove a warp", ["delwarp"]),
+            new ListWarpsCommand($this, "listwarps", "List all warps", ["warps"]),
+            new WarpCommand($this, "warp", "Teleport to a warp"),
+            new NickCommand($this, "nick", "Change your nickname", ["nickname"]),
+        ];
+
+        foreach ($commands as $command) {
+            if (!in_array($command->getName(), $this->getConfig()->getNested("disabled-commands", []))) {
+                $this->getServer()->getCommandMap()->register("Essentialsx", $command);
+            }
+        }
 
         $listeners = [new EventListener()];
 
@@ -76,9 +108,25 @@ class Loader extends PluginBase {
 
         self::$connector = libasynql::create($this, ["type" => "sqlite", "sqlite" => ["file" => "sqlite.sql"], "worker-limit" => 2], ["sqlite" => "sqlite.sql"]);
         self::$connector->executeGeneric(Queries::PLAYERS_INIT);
+        self::$connector->executeGeneric(Queries::HOMES_INIT);
+        self::$connector->executeGeneric(Queries::WARPS_INIT);
         self::$connector->waitAll();
 
         self::$playerManager = new PlayerManager($this);
+        self::$homeManager = new HomeManager($this, $this->getConfig()->get("max-homes", 3));
+        self::$warpManager = new WarpManager($this);
+
+        if ($this->getServer()->getPluginManager()->getPlugin("RankSystem") !== null) {
+            $rankSystem = RankSystem::getInstance();
+            $tagManager = $rankSystem->getTagManager();
+            
+            $tagManager->registerTag(new Tag("display_name", static function(Session $session) : string {
+                return $session->getPlayer()->getDisplayName();
+            }));
+            $this->getLogger()->info("RankSystem found. Registering tags for this plugin.");
+        } else {
+            $this->getLogger()->warning("RankSystem plugin not found. The tags for this plugin will not be registered.");
+        }
     }
 
     public function onDisable(): void {
@@ -93,5 +141,13 @@ class Loader extends PluginBase {
 
     public static function getPlayerManager(): PlayerManager {
         return self::$playerManager;
+    }
+
+    public static function getHomeManager(): HomeManager {
+        return self::$homeManager;
+    }
+
+    public static function getWarpManager(): WarpManager {
+        return self::$warpManager;
     }
 }

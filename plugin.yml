@@ -1,8 +1,10 @@
 name: EssentialsX
 main: ecstsy\essentialsx\Loader
 api: 5.0.0
-version: 1.0.1
+version: 1.0.2
 author: ecstsy
+soft-depend:
+  - RankSystem
 
 permissions:
   essentialsx.default:
@@ -74,3 +76,21 @@ permissions:
   essentialasx.fly:
     default: op
     description: "Gives access to /fly command."  
+  essentialsx.give:
+    default: op
+    description: "Gives access to /give command."  
+  essentialsx.remove-warp:
+    default: op
+    description: "Gives access to /delwarp command."  
+  essentialsx.create-warp:
+    default: op
+    description: "Gives access to /setwarp command."
+  essentialsx.fly:
+    default: op
+    description: "Gives access to /fly command."
+  essentialsx.warp.others:
+    default: op
+    description: "Gives access to /warp others command."   
+  essentialsx.nick:
+    default: op
+    description: "Gives access to /nick command."  

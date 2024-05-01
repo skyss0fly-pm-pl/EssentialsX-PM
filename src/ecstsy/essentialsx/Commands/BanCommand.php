@@ -3,6 +3,7 @@
 namespace ecstsy\essentialsx\Commands;
 
 use CortexPE\Commando\args\RawStringArgument;
+use CortexPE\Commando\args\TextArgument;
 use CortexPE\Commando\BaseCommand;
 use ecstsy\essentialsx\Loader;
 use ecstsy\essentialsx\Utils\Utils;
@@ -16,7 +17,7 @@ class BanCommand extends BaseCommand {
         $this->setPermission($this->getPermission());
 
         $this->registerArgument(0, new RawStringArgument("name", false));
-        $this->registerArgument(1, new RawStringArgument("reason", true));
+        $this->registerArgument(1, new TextArgument("reason", true));
     }
     
     public function onRun(CommandSender $sender, string $aliasUsed, array $args): void

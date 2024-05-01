@@ -42,7 +42,6 @@ class WarpCommand extends BaseCommand {
                 return;
             }
     
-    
             if ($player === null) {
                 $sender->sendMessage(C::RED . "Player '{$player}' not found.");
                 return;

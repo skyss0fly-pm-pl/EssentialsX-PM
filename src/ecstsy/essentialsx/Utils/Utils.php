@@ -49,20 +49,20 @@ class Utils {
 
     public static function checkConfigVersion(string $fileName): void {
         $configVersion = Loader::getInstance()->getConfig()->get("version");
-        $messageVersion = Utils::getConfiguration(Loader::getInstance(), $fileName)->get("version");
+        $messageVersion = Utils::getConfiguration(Loader::getInstance(), "messages-eng.yml")->get("version");
         $kitsVersion = Utils::getConfiguration(Loader::getInstance(), "kits.yml")->get("version");
     
-        if ($configVersion === null || $configVersion !== "1.0.1") {
+        if ($configVersion === null || $configVersion !== "1.0.2") {
             Loader::getInstance()->getLogger()->info("Updating version of $fileName");
-            self::saveOldConfig($fileName);
+            self::saveOldConfig("config.yml");
             Loader::getInstance()->saveDefaultConfig();
         } elseif ($messageVersion === null || $messageVersion !== "1.0.0") {
             Loader::getInstance()->getLogger()->info("Updating version of $fileName");
-            self::saveOldConfig($fileName);
+            self::saveOldConfig("messages-eng.yml");
             Loader::getInstance()->saveResource($fileName);
         } elseif ($kitsVersion === null || $kitsVersion !== "1.0.0") {
             Loader::getInstance()->getLogger()->info("Updating version of $fileName");
-            self::saveOldConfig($fileName);
+            self::saveOldConfig("kits.yml");
             Loader::getInstance()->saveResource($fileName);
         }
     }

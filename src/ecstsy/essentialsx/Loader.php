@@ -64,7 +64,7 @@ class Loader extends PluginBase {
             Utils::checkConfigVersion($resource);
         }
         
-        $unregisteredCommands = ["ban", "ban-ip", "gamemode"];
+        $unregisteredCommands = ["ban", "ban-ip", "gamemode", "give"];
 
         foreach ($unregisteredCommands as $command) {
             $this->getServer()->getCommandMap()->unregister(Server::getInstance()->getCommandMap()->getCommand($command));

@@ -34,13 +34,8 @@ class CreateWarpCommand extends BaseCommand {
         $warpManager = Loader::getWarpManager();
     
         if ($warpManager->getWarp($warpName) === null) {
-            $success = $warpManager->createWarp($sender, $warpName);
-            if ($success) {
-                $sender->sendMessage(C::GREEN . "Warp '{$warpName}' has been created.");
-            } else {
-                $sender->sendMessage(C::GREEN . "Warp '{$warpName}' has been created.");
-
-            }
+            $warpManager->createWarp($sender, $warpName);
+            $sender->sendMessage(C::GREEN . "Warp '{$warpName}' has been created.");
         } else {
             $sender->sendMessage(C::RED . "Warp '{$warpName}' already exists.");
         }

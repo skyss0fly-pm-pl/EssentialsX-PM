@@ -89,9 +89,21 @@ final class EssentialPlayer
      * @param int $amount
      * @return void
      */
-    public function addBalance(int $amount, bool $force = false): void
+    public function addBalance(int $amount): void 
     {
-        $this->balance += $amount;
+        $config = Loader::getInstance()->getConfig();
+        $maxAmount = $config->get("max-money");
+
+        $remainingAmount = $maxAmount - $this->balance;
+        $amountToAdd = min($amount, $remainingAmount);
+
+        if ($amountToAdd <= 0) {
+            $this->getPocketminePlayer()->sendMessage(TextFormat::colorize("&r&cYou have reached the maximum amount of money!"));
+            return;
+        }
+
+        $this->balance += $amountToAdd;
+        $this->getPocketminePlayer()->sendMessage(TextFormat::colorize("&r&a" . $config->get("currency-symbol") . number_format($amountToAdd) . " has been added to your account."));
         $this->updateDb();
     }
 

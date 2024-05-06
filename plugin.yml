@@ -1,7 +1,7 @@
 name: EssentialsX
 main: ecstsy\essentialsx\Loader
 api: 5.0.0
-version: 1.0.2
+version: 1.0.3
 author: ecstsy
 soft-depend:
   - RankSystem
@@ -94,3 +94,15 @@ permissions:
   essentialsx.nick:
     default: op
     description: "Gives access to /nick command."  
+  essentialsx.workbench:
+    default: op
+    description: "Gives access to /workbench command."
+  essentialsx.anvil:
+    default: op
+    description: "Gives access to /anvil command."  
+  essentialsx.eco:
+    default: op
+    description: "Gives access to /eco command."      
+  essentialsx.eco-give:
+    default: op
+    description: "Gives access to /eco give command."  

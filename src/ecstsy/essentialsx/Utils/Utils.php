@@ -17,6 +17,18 @@ use pocketmine\utils\TextFormat as C;
 
 class Utils {
 
+    public const MENU_TYPE_WORKBENCH = "essentialsx:workbench";
+
+    public const MENU_TYPE_ANVIL = "essentialsx:anvil";
+    
+    public static function workBench(): InvMenu {
+        return InvMenu::create(self::MENU_TYPE_WORKBENCH);
+    }
+
+    public static function anvil(): InvMenu {
+        return InvMenu::create(self::MENU_TYPE_ANVIL);
+    }
+    
     public static function getConfiguration(PluginBase $plugin, string $fileName): Config {
         $pluginFolder = $plugin->getDataFolder();
         $filePath = $pluginFolder . $fileName;

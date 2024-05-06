@@ -2,14 +2,18 @@
 
 namespace ecstsy\essentialsx;
 
+use ecstsy\essentialsx\Commands\AnvilCommand;
+use ecstsy\essentialsx\Commands\BalanceCommand;
 use ecstsy\essentialsx\Commands\BanCommand;
 use ecstsy\essentialsx\Commands\BanLookupCommand;
 use ecstsy\essentialsx\Commands\CreateHomeCommand;
 use ecstsy\essentialsx\Commands\CreateWarpCommand;
+use ecstsy\essentialsx\Commands\EcoCommand;
 use ecstsy\essentialsx\Commands\ExpCommand;
 use ecstsy\essentialsx\Commands\FeedCommand;
 use ecstsy\essentialsx\Commands\FlyCommand;
 use ecstsy\essentialsx\Commands\GamemodeCommand;
+use ecstsy\essentialsx\Commands\GiveCommand;
 use ecstsy\essentialsx\Commands\HealCommand;
 use ecstsy\essentialsx\Commands\HomeCommand;
 use ecstsy\essentialsx\Commands\HomesCommand;
@@ -23,15 +27,19 @@ use ecstsy\essentialsx\Commands\RemoveHomeCommand;
 use ecstsy\essentialsx\Commands\RemoveWarpCommand;
 use ecstsy\essentialsx\Commands\SpawnCommand;
 use ecstsy\essentialsx\Commands\WarpCommand;
+use ecstsy\essentialsx\Commands\WorkbenchCommand;
 use ecstsy\essentialsx\Listeners\EventListener;
 use ecstsy\essentialsx\Player\Homes\HomeManager;
 use ecstsy\essentialsx\Player\PlayerManager;
 use ecstsy\essentialsx\Server\Warps\WarpManager;
+use ecstsy\essentialsx\Utils\AnvilInvMenuType;
 use ecstsy\essentialsx\Utils\Queries;
 use ecstsy\essentialsx\Utils\Utils;
+use ecstsy\essentialsx\Utils\CraftingTableInvMenuType;
 use IvanCraft623\RankSystem\RankSystem;
 use IvanCraft623\RankSystem\session\Session;
 use IvanCraft623\RankSystem\tag\Tag;
+use muqsit\invmenu\InvMenuHandler;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
 use pocketmine\utils\SingletonTrait;
@@ -126,6 +134,16 @@ class Loader extends PluginBase {
             $this->getLogger()->info("RankSystem found. Registering tags for this plugin.");
         } else {
             $this->getLogger()->warning("RankSystem plugin not found. The tags for this plugin will not be registered.");
+        }
+
+        if (!InvMenuHandler::isRegistered()) {
+            InvMenuHandler::register($this);
+        }
+
+        $menus = [Utils::MENU_TYPE_WORKBENCH => new CraftingTableInvMenuType(), Utils::MENU_TYPE_ANVIL => new AnvilInvMenuType()];
+        
+        foreach ($menus as $type => $menu) {
+            InvMenuHandler::getTypeRegistry()->register($type, $menu);
         }
     }
 

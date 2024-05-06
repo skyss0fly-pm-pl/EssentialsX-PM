@@ -3,6 +3,7 @@
 namespace ecstsy\essentialsx\Utils;
 
 use ecstsy\essentialsx\Loader;
+use muqsit\invmenu\InvMenu;
 use pocketmine\color\Color;
 use pocketmine\item\Armor;
 use pocketmine\item\enchantment\EnchantmentInstance;

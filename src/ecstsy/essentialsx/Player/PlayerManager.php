@@ -57,7 +57,7 @@ final class PlayerManager
         $args = [
             "uuid" => $player->getUniqueId()->toString(),
             "username" => $player->getName(),
-            "balance" => 1000,
+            "balance" => Loader::getInstance()->getConfig()->get("starting-balance"),
             "cooldowns" => "{}",
         ];
 

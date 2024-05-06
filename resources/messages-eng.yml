@@ -1,5 +1,5 @@
 # (!) DO NOT TOUCH (!)
-version: 1.0.0
+version: 1.0.1
 
 # You can use the `&` symbol throughout this config for color codes.
 # Ban Information
@@ -12,17 +12,20 @@ ip-ban:
   message: "You have been banned for: {reason}"
   
 # Gamemode Messages
-# Tags: {player}, {target_player}, {gamemode}
+# Tags: {player}, {gamemode}
 gamemode:
+  in_game_only: "&cYou must run this command in-game"
   invalid_gamemode: "&cInvalid gamemode"
   player_not_found: "&cPlayer '{player}' does not exist or is offline."
   no_permission: "&cYou don't have permission to change to that game mode."
-  set_gamemode: "&aSet {target_player}'s game mode to {gamemode}."
+  set_gamemode: "&aSet {player}'s game mode to {gamemode}."
 
 # Exp Messages
 # Tags: {player} {exp} {level} {levelup} {amount} {new_xp}
 xp:
+  in_game_only: "&cThis command must be used in-game."
   self_info: "{player} §r§6has §r§c{exp} EXP §r§6(level §r§c{level}§r§6) §r§6and needs {levelup} more exp to level up."
+  no_permission: "&cYou do not have permission to use this command."
   add_usage: "&cUsage: /xp add <player> <amount>"
   player_not_found: "&cPlayer not found."
   invalid_amount: "&cAmount must be a positive integer."
@@ -38,8 +41,8 @@ xp:
 
 # Fly Configuration
 fly:
-  disabled: "&r&c&l[!] &r&cFly Disabled"
-  enabled: "&r&a&l[!] &r&aFly Enabled"
+  disabled: "&r&6Set fly mode &cdisabled &6for &4{player}&6."
+  enabled: "&r&5Set fly mode &cenabled &6for &4{player}&6."
 
 # Join and Quit Messages
 # Tags: {name}, {nametag}, {display_name}
@@ -51,3 +54,8 @@ join:
   #  - "Your nametag is {nametag}, right?"
 quit:
   disconnect: "&r&c{nametag} has disconnected from the server!"
+
+# Economy Messages
+balance:
+  display: "&r&aBalance: &c${balance}"
+  display-other: "&r&aBalance of {player}: &c${balance}"  

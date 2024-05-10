@@ -15,9 +15,7 @@ class RenameCommand extends BaseCommand {
 
     public function prepare(): void {
         $this->setPermission($this->getPermission());
-
-        $this->registerArgument(0, new RawStringArgument("name", true);
-       
+        $this->registerArgument(0, new RawStringArgument("name", true);       
     }
 
     public function onRun(CommandSender $sender, string $aliasUsed, array $args): void
@@ -26,26 +24,31 @@ class RenameCommand extends BaseCommand {
             $sender->sendMessage(C::RED . "This command can only be used in-game.");
             return;
         }
-
+            
         else {
-if (!$args == 0) {
-  $sender->sendMessage(C::RED . "Item Cannot Be Named as Blank");
+            if ($player->hasPermission("essentialsx.rename"){
+          if (!$args == 0) {
+            $sender->sendMessage(C::RED . "Item Cannot Be Named as Blank");
             return;
-  
+          }
+          else {
+          $item = $sender->GetItem()->GetItemInHand();
+
+          if ($item === VanillaItems::AIR){
+
+            $sender->sendMessage(C::RED . "Item Cannot Be Found!");
+            return;
+          }
+          else {
+          $item->setName($args[0]);
+          $sender->sendMessage(C::GREEN . "Item Has Been Renamed to: " . $args[0]);
+          return;
+  }
+          }
+        else {
+$sender->sendMessage(C::RED . "You Lack Permission to rename!");
+            return;
         }
-else {
-$item = $sender->GetItem()->GetItemInHand();
-
-  if ($item === VanillaItems::AIR){
-
-$sender->sendMessage(C::RED . "Item Cannot Be Found!");
-            return;
-  }
-  else {
-$item->setName($args[0]);
-    $sender->sendMessage(C::GREEN . "Item Has Been Renamed to: " . $args[0]);
-            return;
-  }
 }
 
 

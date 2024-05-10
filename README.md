@@ -4,7 +4,7 @@ This is an unofficial port of the popular EssentialsX plugin for PocketMine-MP, 
 
 ## Under Development
 
-This plugin is still under very heavy development
+This plugin is still under very heavy development, if you want to use this, download the latest stable [build](https://poggit.pmmp.io/ci/ecstsylove/EssentialsX-PM/~)
 
 ## Features
 

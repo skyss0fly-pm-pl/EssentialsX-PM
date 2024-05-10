@@ -15,7 +15,7 @@ class RenameCommand extends BaseCommand {
 
     public function prepare(): void {
         $this->setPermission($this->getPermission());
-        $this->registerArgument(0, new RawStringArgument("name", true);       
+        $this->registerArgument(0, new RawStringArgument("name", true));       
     }
 
     public function onRun(CommandSender $sender, string $aliasUsed, array $args): void

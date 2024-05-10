@@ -26,7 +26,7 @@ class RenameCommand extends BaseCommand {
         }
             
         else {
-            if ($player->hasPermission("essentialsx.rename"){
+            
           if (!$args == 0) {
             $sender->sendMessage(C::RED . "Item Cannot Be Named as Blank");
             return;
@@ -49,7 +49,6 @@ class RenameCommand extends BaseCommand {
 $sender->sendMessage(C::RED . "You Lack Permission to rename!");
             return;
         }
-}
 
 
 
@@ -58,6 +57,6 @@ $sender->sendMessage(C::RED . "You Lack Permission to rename!");
     }
 
     public function getPermission(): string {
-        return "essentialsx.default";
+        return "essentialsx.rename";
     }
 }

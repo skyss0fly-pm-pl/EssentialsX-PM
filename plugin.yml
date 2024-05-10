@@ -10,6 +10,9 @@ permissions:
   essentialsx.default:
     default: true
     description: "Default permission for EssentialsX"
+    essentialsx.rename:
+    default: op
+    description: "Gives access to /rename command."
   essentialsx.ban:
     default: op
     description: "Gives access to /ban command."
